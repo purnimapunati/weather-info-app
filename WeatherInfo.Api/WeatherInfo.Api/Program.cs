@@ -1,15 +1,21 @@
+using WeatherInfo.Infra.Ioc;
+using WeatherInfo.Infra.Model;
+using WeatherInfo.Service.Ioc;
+
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
-// Add services to the container.
+services.AddControllers();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.Configure<OpenWeatherMapApiOptions>(builder.Configuration.GetSection("OpenWeatherMapAPI"));
 
+services.AddOptions()
+    .ConfigureWeatherInfoSerivesCoreBondings()
+    .ConfigureOpenWeatherMapCoreBindings();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
