@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using WeatherInfo.Api.Authentication;
 using WeatherInfo.Service.Interfaces;
 using WeatherInfo.Service.Models;
 
 namespace WeatherInfo.Api.Controllers
 {
     [Route("Weather"), ApiController]
-
+    [ServiceFilter(typeof(AuthenticationFilter))]
     public class WeatherController : ControllerBase
     {
         private readonly ILogger<WeatherController> _logger;
