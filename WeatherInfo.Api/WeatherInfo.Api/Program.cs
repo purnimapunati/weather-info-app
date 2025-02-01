@@ -8,6 +8,7 @@ using WeatherInfo.Service.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();
@@ -34,6 +35,19 @@ services.AddInMemoryRateLimiting();
 services.AddMvc();
 services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+                          policy =>
+                          {
+                              policy.WithOrigins("http://localhost:3000",
+                                                  "http://localhost:3001")
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                          });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -42,6 +56,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(MyAllowSpecificOrigins);
 app.UseClientRateLimiting();
 app.UseHttpsRedirection();
 
