@@ -3,7 +3,6 @@
 
 namespace WeatherInfo.Test
 {
-
     public class RateLimitTests
     {
         private const string ApiBaseUrl = "http://localhost:5227";
