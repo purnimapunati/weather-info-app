@@ -20,7 +20,7 @@ namespace WeatherInfo.Api.Controllers
         [ProducesResponseType<string>(StatusCodes.Status200OK)]
         [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetWeatherDetails(string city, string country)
+        public async Task<IActionResult> GetWeatherDetails(string? city, string? country)
         {
             var weatherResponse = await _weatherService.GetWeatherDetails(city, country);
 

@@ -45,15 +45,13 @@ html {
 	transition: width 0.4s ease-in-out;
 	color: #333;
 }
-.search-button-div{
-	
-}
+
 .search-button {
 
 	width: 100%;
 	max-width: 400px;
 	box-sizing: border-box;
-	border: 2px solid rgb(204, 204, 204);
+	border: 2px solid rgb(0, 0, 0);
 	outline: none;
 	border-radius: 20px;
 	font-size: 16px;
