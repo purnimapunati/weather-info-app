@@ -5,6 +5,6 @@ namespace WeatherInfo.Service.Interfaces
 {
     public interface IWeatherService
     {
-        Task<WeatherResponse> GetWeatherDetails(string city, string country);
+        Task<WeatherResponse> GetWeatherDetails(string? city, string? country);
     }
 }
